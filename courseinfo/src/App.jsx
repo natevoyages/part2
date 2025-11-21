@@ -1,13 +1,6 @@
 const Header = ({text}) => <h1>{text}</h1>
 
-const Content = ({content}) => (
-  <div>
-    {console.log(content)}
-    <Part part={content[0]} />
-    <Part part={content[1]} />
-    <Part part={content[2]} />
-  </div>
-)
+const Content = ({content}) => content.map(contents => <Part key={contents.id} part={contents}/>)
 
 const Part = ({part}) => (
   <p>
@@ -15,11 +8,20 @@ const Part = ({part}) => (
   </p>
 )
 
+const Total = ({parts}) => {
+  const total = parts.reduce((sum,part)=> {console.log(sum)
+   return part.exercises + sum},0)
+  return <p>
+      total of {total} exercises
+    </p>
+  }
+
 const Course = ({course}) => {
   return (
     <div>
       <Header text = {course.name}/>
       <Content content = {course.parts}/>
+      <Total key= {course.parts.id} parts = {course.parts}/>
     </div>
   )
 }
@@ -43,13 +45,18 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3        
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4        
       }
     ]
   }
   console.log();
   
 
-  return <Course course={course} />
+  return <Course key={course.id} course={course} />
 }
 
 export default App
