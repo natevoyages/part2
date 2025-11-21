@@ -9,8 +9,9 @@ const Part = ({part}) => (
 )
 
 const Total = ({parts}) => {
-  const total = parts.reduce((sum,part)=> {console.log(sum)
+  const total = parts.reduce((sum,part)=> {console.log("whats happening", sum, part)
    return part.exercises + sum},0)
+   console.log("The total", total)
   return <p>
       total of {total} exercises
     </p>
@@ -21,7 +22,7 @@ const Course = ({course}) => {
     <div>
       <Header text = {course.name}/>
       <Content content = {course.parts}/>
-      <Total key= {course.parts.id} parts = {course.parts}/>
+      <Total parts = {course.parts}/>
     </div>
   )
 }
@@ -56,7 +57,7 @@ const App = () => {
   console.log();
   
 
-  return <Course key={course.id} course={course} />
+  return <Course course={course} />
 }
 
 export default App
