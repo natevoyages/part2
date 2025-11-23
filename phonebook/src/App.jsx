@@ -29,7 +29,6 @@ const App = () => {
       id: persons.length + 1,
     })
     setPersons(updatedList)
-
   }
 
   const handleNameChange = (event) => {
@@ -43,8 +42,8 @@ const App = () => {
   }
 
   // Filter
-  const filterSearch = persons.filter(person => 
-  new RegExp(newSearch, 'i').test(person.name))
+  const filterSearch = () =>  persons.filter(person => new RegExp(newSearch, 'i').test(person.name))
+  const personsToShow = newSearch === ('') ? persons : filterSearch()
 
   return (
     <div>
@@ -64,10 +63,9 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <div>
-        { persons.map((person) => <People persons={person} key={person.id} />) }
+        { personsToShow.map((person) => <People persons={person} key={person.id} />) }
       </div>
     </div>
   )
 }
-
 export default App
