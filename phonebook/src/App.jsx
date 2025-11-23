@@ -1,8 +1,12 @@
 import { useState } from 'react'
 
-const People = ({persons}) =>  <p>{persons.name} {persons.number}</p>
-
+const Persons = ({personsToShow}) =>  {     
+  return ( 
+  <div>
+    {personsToShow.map((person) => <p key={person.id}>{person.name} {person.number}</p>) }
+  </div>)}
 const App = () => {
+
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
     { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
@@ -61,9 +65,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div>
-        { personsToShow.map((person) => <People persons={person} key={person.id} />) }
-      </div>
+      <Persons personsToShow={personsToShow}/>
     </div>
   )
 }
