@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 const People = ({persons}) =>  <p>{persons.name} {persons.number}</p>
 
-// next add boolean with "" as true
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -17,7 +16,7 @@ const App = () => {
     event.preventDefault()
     const names = persons.keys()
     for(const key of names){
-      if (newName === persons[key].name ){
+      if (new RegExp(newName, 'i').test(persons[key].name) ){
         window.alert(`${newName} is already added to phonebook` )
         return
       }
