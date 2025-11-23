@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const People = ({persons}) =>  <p>{persons.name} {persons.number}</p>
 
-
+// next add boolean with "" as true
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -10,6 +10,7 @@ const App = () => {
     { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
     { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
   ])
+  const [newSearch, setNewSearch] = useState('')
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const addName = (event) =>  { 
@@ -30,21 +31,32 @@ const App = () => {
     setPersons(updatedList)
 
   }
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
   const handleNumberChange = (event) => {
     setNewNumber(event.target.value)
   }
+    const handleSearchChange = (event) => {
+    setNewSearch(event.target.value)
+  }
+
+  // Filter
+  const filterSearch = persons.filter(person => 
+  new RegExp(newSearch, 'i').test(person.name))
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
+      <div>
+        filter shown with<input value={newSearch} onChange={handleSearchChange}></input>
+      </div>
       <form onSubmit={addName}>
         <div>
+          <h2>Add a new</h2>
           <div>name: <input value={newName} onChange={handleNameChange}/></div>
           <div>number: <input value={newNumber} onChange={handleNumberChange} /></div>
-          <div>debug: {newName} {newNumber}</div>
         </div>
         <div>
           <button type="submit">add</button>
