@@ -1,6 +1,5 @@
 /*To Do 
 Add filter Component
-Add forms component
 */
 import { useState } from 'react'
 
@@ -25,7 +24,12 @@ const Persons = ({personsToShow}) =>  {
     </form>
     )
  }
-const Filter = () => {}
+const Filter = ({newSearch, handleSearchChange}) => {
+      return (
+      <div>
+        filter shown with<input value={newSearch} onChange={handleSearchChange}></input>
+      </div>)
+}
 
 
 
@@ -75,9 +79,10 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <div>
-        filter shown with<input value={newSearch} onChange={handleSearchChange}></input>
-      </div>
+      <Filter
+        newSearch={newSearch} 
+        handleSearchChange={handleSearchChange}
+      />
       <PersonForm 
         addName={addName}
         handleNameChange={handleNameChange} 
