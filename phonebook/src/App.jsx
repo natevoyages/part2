@@ -1,6 +1,3 @@
-/*To Do 
-Add filter Component
-*/
 import { useState } from 'react'
 
 const Persons = ({personsToShow}) =>  {     
